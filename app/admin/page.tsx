@@ -1,5 +1,5 @@
 const Home = () => {
-  return <h1>Admin Home Page</h1>;
+  return <h1 className="font-roboto font-bold">Admin Home Page</h1>;
 };
 
 export default Home;

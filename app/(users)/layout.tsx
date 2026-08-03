@@ -1,16 +1,24 @@
+import { JSX } from "react/jsx-runtime";
+import React from "react";
 import "../globals.css";
-import Navigation from "./components/navigation";
+import Navigation from "./_components/navigation";
 
 function RootLayout({
   children,
-}: Readonly<{
+  notifications,
+  feed,
+}: {
   children: React.ReactNode;
-}>) {
+  notifications: React.ReactNode;
+  feed: React.ReactNode;
+}): JSX.Element {
   return (
-    <html>
+    <html lang="en">
       <body>
         <Navigation />
-        {children}
+        <div>{children}</div>
+        <div>{notifications}</div>
+        <div>{feed}</div>
       </body>
     </html>
   );

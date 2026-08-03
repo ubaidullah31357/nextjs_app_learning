@@ -24,3 +24,5 @@ export default function Navigation(): JSX.Element {
     </header>
   );
 }
+
+// this file is inside a "Private Folder", can't be accessed via url
