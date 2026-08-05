@@ -1,6 +1,6 @@
 import React from "react";
 
-const SingleProfile = async (props: any): React.ReactNode => {
+const SingleProfile = async (props: any): Promise<React.ReactNode> => {
   const user = await props.params;
   console.log(props, user);
 
