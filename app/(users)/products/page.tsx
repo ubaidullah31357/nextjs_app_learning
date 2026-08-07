@@ -1,4 +1,5 @@
 import React from "react";
+import ProductsList from "./productsList/page";
 
 interface PageProps {
   searchParams: Promise<{
@@ -14,6 +15,8 @@ const Products = async ({
 }: PageProps): Promise<React.ReactNode> => {
   const searchParam = await searchParams;
 
+  console.log("Oute:", searchParam);
+
   const category = searchParam?.category || "all";
   const sort = searchParam?.sort || "default";
   const page = searchParam?.page || "1";
@@ -28,6 +31,9 @@ const Products = async ({
         <p>Sort: {sort}</p>
         <p>Page: {page}</p>
       </div>
+      <br />
+      <hr />
+      <ProductsList />
     </>
   );
 };
