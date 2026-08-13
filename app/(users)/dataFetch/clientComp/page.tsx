@@ -2,8 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
+interface UserInfo {
+  name: string;
+  gender: string;
+  probability: number;
+  count: number;
+}
+
 const ClientDataFetch = (): React.ReactNode => {
-  const [userInfo, setUserInfo] = useState({});
+  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const query = useSearchParams();
   const name = query.get("name");
 
@@ -15,11 +22,11 @@ const ClientDataFetch = (): React.ReactNode => {
       setUserInfo(userData);
     };
     getUserData();
-  }, []);
+  }, [name]);
 
   return (
     <>
-      <h1>Name - {userInfo.name}</h1>
+      <h1>Name - {userInfo?.name}</h1>
     </>
   );
 };

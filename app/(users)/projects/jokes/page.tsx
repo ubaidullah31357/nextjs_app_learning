@@ -2,8 +2,13 @@
 
 import React, { useEffect, useState } from "react";
 
+interface Joke {
+  punchline: string;
+  setup: string;
+}
+
 const JokesGenerator = (): React.ReactNode => {
-  const [jokes, setJokes] = useState({});
+  const [jokes, setJokes] = useState<Joke | null>(null);
   const [showJokes, setShowJokes] = useState(true);
   const URL = "https://official-joke-api.appspot.com/random_joke";
 
@@ -14,13 +19,13 @@ const JokesGenerator = (): React.ReactNode => {
   };
   useEffect(() => {
     getJokes();
-  }, []);
+  }, [jokes]);
 
   return (
     <>
       <div className="h-1/2 w-1/2 p-9 bg-teal-100 rounded-lg flex flex-col items-center justify-center gap-2 shadow-amber-500 shadow-sm ">
         <h1 className="text-lg text-bold">Random Joke Generator</h1>
-        <p className="setup">{jokes.setup}</p>
+        <p className="setup">{jokes?.setup}</p>
         {showJokes ? (
           <button
             className="rounded-sm p-2 bg-amber-500 text-white"
@@ -30,7 +35,7 @@ const JokesGenerator = (): React.ReactNode => {
           </button>
         ) : (
           <>
-            <p className="punchline">{jokes.punchline}</p>
+            <p className="punchline">{jokes?.punchline}</p>
             <button
               className="rounded-sm p-2 bg-amber-500 text-white"
               onClick={() => setShowJokes(true)}

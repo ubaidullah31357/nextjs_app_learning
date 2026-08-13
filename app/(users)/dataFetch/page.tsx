@@ -1,5 +1,5 @@
 const DataFetch = async () => {
-  await new Promise((resolve): void => {
+  await new Promise<void>((resolve): void => {
     setTimeout(() => {
       resolve();
     }, 3000);
