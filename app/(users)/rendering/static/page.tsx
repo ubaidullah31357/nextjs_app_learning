@@ -11,6 +11,8 @@ interface Doctor extends RowDataPacket {
   salary: number;
 }
 
+export const revalidate = 60;
+
 const StaticPage = async () => {
   const [doctors] = await db.query<Doctor[]>("SELECT * FROM doctors");
 
