@@ -42,7 +42,7 @@ const FetchDoctors = async ({ params }: Props) => {
       <div className="min-h-screen bg-gray-950 flex items-center justify-center p-6">
         <div className="w-full max-w-md overflow-hidden rounded-2xl bg-white shadow-2xl">
           {/* Header */}
-          <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 px-6 py-5">
+          <div className="relative bg-linear-to-r from-blue-600 via-indigo-600 to-purple-600 px-6 py-5">
             <div className="flex items-center gap-4">
               {/* Doctor Avatar */}
               <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-white text-2xl font-bold text-indigo-600">
