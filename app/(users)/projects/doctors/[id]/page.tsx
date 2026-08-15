@@ -1,13 +1,6 @@
 import { db } from "@/config/db";
 import { RowDataPacket } from "mysql2";
-import {
-  Mail,
-  Phone,
-  BriefcaseBusiness,
-  DollarSign,
-  UserRound,
-  Stethoscope,
-} from "lucide-react";
+import { Mail, Phone, BriefcaseBusiness, DollarSign } from "lucide-react";
 import { notFound } from "next/navigation";
 
 interface Doctor extends RowDataPacket {
@@ -22,6 +15,15 @@ interface Doctor extends RowDataPacket {
 
 interface Props {
   params: Promise<{ id: string }>;
+}
+
+// The below code is used to generate static params for each doctor in the database. This allows Next.js to pre-render pages for each doctor at build time, improving performance and SEO.
+export async function generateStaticParams() {
+  const [doctors] = await db.query<Doctor[]>("SELECT * FROM doctors");
+
+  return doctors.map((doctor) => ({
+    id: doctor.doctor_id.toString(),
+  }));
 }
 
 const FetchDoctors = async ({ params }: Props) => {
