@@ -8,6 +8,7 @@ import {
   UserRound,
   Stethoscope,
 } from "lucide-react";
+import { notFound } from "next/navigation";
 
 interface Doctor extends RowDataPacket {
   doctor_id: number;
@@ -33,9 +34,7 @@ const FetchDoctors = async ({ params }: Props) => {
 
   const doctor = doctors.find((doctor) => doctor.doctor_id === parseInt(id));
 
-  if (!doctor) {
-    return <h1>Doctor not found</h1>;
-  }
+  if (!doctor) return notFound();
 
   return (
     <>
