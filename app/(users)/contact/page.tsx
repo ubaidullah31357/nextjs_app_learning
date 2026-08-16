@@ -1,5 +1,12 @@
+"use client";
+
 import { JSX } from "react";
-import { contactAction } from "./contact.action";
+// import { contactAction } from "./contact.action";
+
+const contactAction = (formData: any) => {
+  const { name, email, message } = Object.fromEntries(formData.entries());
+  console.log(name, email, message);
+};
 
 function Contact(): JSX.Element {
   return (
