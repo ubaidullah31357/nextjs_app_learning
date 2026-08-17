@@ -32,3 +32,11 @@ export const contactAction = async (name: any, email: any, message: any) => {
     };
   }
 };
+
+
+
+// The flow for useTransition Hook is:
+
+// Submit form → startTransition() → isPending = true → show "Loading..." → contactAction() finishes → response stored → isPending = false
+
+// This prevents the UI from appearing unresponsive while your asynchronous contact action is being processed.
