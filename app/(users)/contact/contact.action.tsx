@@ -3,13 +3,13 @@
 import { db } from "@/config/db";
 import { redirect } from "next/navigation";
 
-export const contactAction = async (previousState: any, formData: any) => {
+export const contactAction = async (name: any, email: any, message: any) => {
   //   const name = formData.get("name");
   //   const email = formData.get("email");
   //   const message = formData.get("message");
 
   try {
-    const { name, email, message } = Object.fromEntries(formData.entries());
+    // const { name, email, message } = Object.fromEntries(formData.entries());
     console.log(name, email, message);
 
     // await db.execute(
@@ -18,7 +18,7 @@ export const contactAction = async (previousState: any, formData: any) => {
     // );
 
     // for user's redirection
-    redirect("/");
+    // redirect("/");
     return {
       success: true,
       message: "Form has been submitted Successfully.",

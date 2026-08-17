@@ -1,6 +1,12 @@
 "use client";
 
-import { JSX, useActionState } from "react";
+import {
+  JSX,
+  SetStateAction,
+  useActionState,
+  useState,
+  useTransition,
+} from "react";
 import { contactAction } from "./contact.action";
 
 // const contactAction = (formData: any) => {
@@ -8,14 +14,31 @@ import { contactAction } from "./contact.action";
 //   console.log(name, email, message);
 // };
 
+type ContactResponse = {
+  success: boolean;
+  message: string;
+};
+
 function Contact(): JSX.Element {
   // const [state, formAction, isPending] = useActionState(fn, initialState, permalink?);
-  const [state, formAction, isPending] = useActionState(contactAction, null);
+  // const [state, formAction, isPending] = useActionState(contactAction, null);
+
+  const [isPending, startTransition] = useTransition();
+  const [contactFormResponse, setContactFormResponse] =
+    useState<ContactResponse | null>(null);
+
+  const handleContactSubmit = (formData: any) => {
+    const { name, email, message } = Object.fromEntries(formData);
+    startTransition(async () => {
+      const res = await contactAction(name, email, message);
+      setContactFormResponse(res);
+    });
+  };
 
   return (
     <>
       <form
-        action={formAction}
+        action={handleContactSubmit}
         className="bg-gray-800 rounded p-5 pl-36 flex flex-col items-start justify-start gap-5 text-white text-sm font-bold"
       >
         <label htmlFor="name" className="flex flex-col gap-1">
@@ -59,11 +82,11 @@ function Contact(): JSX.Element {
         </button>
       </form>
 
-      {state && (
+      {contactFormResponse && (
         <section
-          className={`p-5 mb-3 ${state?.success ? "bg-green-500" : "bg-red-500"}`}
+          className={`p-5 mb-3 ${contactFormResponse?.success ? "bg-green-500" : "bg-red-500"}`}
         >
-          <p>{state?.message}</p>
+          <p>{contactFormResponse?.message}</p>
         </section>
       )}
     </>
