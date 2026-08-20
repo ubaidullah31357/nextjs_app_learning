@@ -1,6 +1,6 @@
 import "../globals.css";
 import Navigation from "./components/navigation";
-import { Roboto, Work_Sans } from "next/font/google";
+// import { Roboto, Work_Sans } from "next/font/google";
 
 export const metadata = {
   title: {
@@ -41,15 +41,15 @@ export const metadata = {
   },
 };
 
-const roboto = Roboto({
-  subsets: ["latin"],
-  variable: "--font-roboto",
-});
+// const roboto = Roboto({
+//   subsets: ["latin"],
+//   variable: "--font-roboto",
+// });
 
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  variable: "--font-work-sans",
-});
+// const workSans = Work_Sans({
+//   subsets: ["latin"],
+//   variable: "--font-work-sans",
+// });
 
 function RootLayout({
   children,
@@ -58,7 +58,8 @@ function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${workSans.variable}`}>
+      {/* <body className={`${roboto.variable} ${workSans.variable}`}> */}
+      <body>
         <Navigation />
         {children}
       </body>
